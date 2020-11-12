@@ -26,6 +26,9 @@ requires "nim >= 1.4.0",
   "unicodeplus  == 0.8.0",
   "wepoll  == 0.1.0"
 
+task installDeps, "Install dependencies":
+  exec "nimble install -d -l -y"
+
 task runr, "Build and run release version.":
   exec "nim c -r -d:danger -d:release --nimblePath:nimbledeps/pkgs src/main"
 
