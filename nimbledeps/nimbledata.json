@@ -1,0 +1,12 @@
+{
+  "reverseDeps": {
+    "nimCommandParser": {
+      "0.1.1": [
+        {
+          "name": "nwt",
+          "version": "0.1.7"
+        }
+      ]
+    }
+  }
+}

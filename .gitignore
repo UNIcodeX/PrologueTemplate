@@ -13,5 +13,3 @@
 # Ignore libs
 *.so*
 *.dll
-
-nimbledeps/*
