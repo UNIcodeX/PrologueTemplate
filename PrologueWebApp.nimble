@@ -39,3 +39,16 @@ task buildDist, "Build and place in ./dist":
   exec "nim c -d:danger -d:release --nimblePath:nimbledeps/pkgs --gc:orc -o:dist/main src/main"
   exec "cp -r static dist/"
   exec "cp -r templates dist/"
+
+# Threaded build tasks
+
+task tRunr, "Build and run release version.":
+  exec "nim c -r -d:danger -d:release --nimblePath:nimbledeps/pkgs --threads:on --tlsEmulation:off src/main"
+
+task tRunrOrc, "Build and run release version (--gc:orc).":
+  exec "nim c -r -d:danger -d:release --nimblePath:nimbledeps/pkgs --gc:orc --threads:on src/main"
+
+task tBuildDist, "Build and place in ./dist":
+  exec "nim c -d:danger -d:release --nimblePath:nimbledeps/pkgs --gc:orc -o:dist/main --threads:on src/main"
+  exec "cp -r static dist/"
+  exec "cp -r templates dist/"
