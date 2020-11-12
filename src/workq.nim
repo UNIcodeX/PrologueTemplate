@@ -1,6 +1,6 @@
 # nim c -r --threads:on --gc:orc
 
-import cpuinfo, os, random, locks, deques
+import strformat, cpuinfo, os, random, locks, deques
 
 type
   WorkReq = ref object
@@ -17,6 +17,10 @@ var
   outputQ: Deque[WorkRes]
   outputLock: Lock
 
+proc tDebug(m:string) {.inline, gcsafe.} = 
+  {.gcsafe.}:
+    echo fmt"Thread {getThreadID()} => {m}"
+
 template hold(lock: Lock, body: untyped) =
   ## Wraps withLock in a gcsafe block.
   {.gcsafe.}:
@@ -27,6 +31,7 @@ proc workThread(threadNum: int) {.thread.} =
   ## Work thread waits for work to arrive then does it.
   ## N of them can be running at one time.
   while true:
+    tDebug "workThread()"
     var
       ready = false
       workReq: WorkReq
@@ -80,7 +85,7 @@ proc askForWork() =
         if ready:
           workRes = outputQ.popFirst()
       if ready:
-        echo "got       ", workRes.id
+        tDebug fmt"got  {workRes.id}"
       else:
         break
 
