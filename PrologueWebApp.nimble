@@ -35,7 +35,7 @@ task runr, "       => Build and run release version":
 task runrOrc, "    => Build and run release version (--gc:orc)":
   exec "nim c -r -d:danger -d:release --nimblePath:nimbledeps/pkgs --gc:orc src/main"
 
-task buildDist, "  => Build and place in ./dist\n\nMulti-Threaded":
+task buildDist, "  => Build and place in ./dist\n\nMulti-Threaded:":
   exec "nim c -d:danger -d:release -d:lto --nimblePath:nimbledeps/pkgs --gc:orc -o:dist/main src/main"
   exec "cp -r static dist/"
   exec "cp -r templates dist/"
