@@ -2,19 +2,15 @@
 
 ### Build Options
 ```
-nimble installDeps => Locally install dependencies
-```
+installDeps        => Install dependencies
 
-#### Single-Threaded
-```
-nimble runr        => Build and run release version.
-nimble runrOrc     => Build and run release version (--gc:orc).
-nimble buildDist   => Build and place in ./dist
-```
+Single-Threaded:
+runr               => Build and run release version
+runrOrc            => Build and run release version (--gc:orc)
+buildDist          => Build and place in ./dist
 
-#### Multi-Threaded
-```
-nimble tRunr       => Multi-Threaded - build and run release version.
-nimble tRunrOrc    => Multi-Threaded - build and run release version (--gc:orc).
-nimble tBuildDist  => Multi-Threaded - build and place in ./dist"
+Multi-Threaded
+tRunr              => Build and run release version
+tRunrOrc           => Build and run release version (--gc:orc)
+tBuildDist         => Build and place in ./dist
 ```
