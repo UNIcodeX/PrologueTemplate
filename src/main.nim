@@ -38,7 +38,8 @@ proc renderPage(ctx: Context, page: string = "index.html") =
   # result = 0
   
 proc index(ctx: Context) {.async.} =
-  spawn renderPage(ctx, page = "index.html")
+  parallel:
+    spawn renderPage(ctx, page = "index.html")
 
 proc explicitHTML(ctx: Context) {.async.} =
   resp htmlResponse("<h2>Welcome to Prologue</h2>")
@@ -48,7 +49,8 @@ proc renderImplicitHTML(ctx: Context, html:string) =
   resp html 
 
 proc implicitHTML(ctx: Context) {.async.} =
-  spawn renderImplicitHTML(ctx, "<html><body><h2>This is an implicit HTML response</h2></body></html>")
+  parallel:
+    spawn renderImplicitHTML(ctx, "<html><body><h2>This is an implicit HTML response</h2></body></html>")
 
 proc jsonResp(ctx: Context) {.async.} =
   resp jsonResponse(%*{"message": "test"})
