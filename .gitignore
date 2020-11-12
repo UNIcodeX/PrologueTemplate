@@ -13,3 +13,5 @@
 # Ignore libs
 *.so*
 *.dll
+
+dist
